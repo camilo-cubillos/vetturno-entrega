@@ -6,6 +6,7 @@ import com.vetturno.service.MascotaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class MascotaController {
 
     @PostMapping
     public ResponseEntity<MascotaDTO> crear(
-            @RequestBody MascotaRequest request) {
+            @Valid @RequestBody MascotaRequest request) {
 
         MascotaDTO mascota = mascotaService.crear(request);
 

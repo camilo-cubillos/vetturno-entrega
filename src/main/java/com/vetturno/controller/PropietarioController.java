@@ -6,6 +6,7 @@ import com.vetturno.service.PropietarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class PropietarioController {
 
     @PostMapping
     public ResponseEntity<PropietarioDTO> crear(
-            @RequestBody PropietarioRequest request) {
+            @Valid @RequestBody PropietarioRequest request) {
 
         PropietarioDTO propietario = propietarioService.crear(request);
 

@@ -1,12 +1,24 @@
 package com.vetturno.dto;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 public class CitaRequest {
 
+    @NotNull(message = "La fecha y hora son obligatorias")
+    @Future(message = "La fecha de la cita debe ser futura")
     private LocalDateTime fechaHora;
+
+    @NotBlank(message = "El motivo es obligatorio")
     private String motivo;
+
+    @NotNull(message = "La mascota es obligatoria")
     private Long mascotaId;
+
+    @NotNull(message = "El veterinario es obligatorio")
     private Long veterinarioId;
 
     public CitaRequest() {

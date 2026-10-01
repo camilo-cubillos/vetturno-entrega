@@ -6,6 +6,7 @@ import com.vetturno.service.CitaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class CitaController {
 
     @PostMapping
     public ResponseEntity<CitaDTO> crear(
-            @RequestBody CitaRequest request) {
+            @Valid @RequestBody CitaRequest request) {
 
         CitaDTO cita = citaService.crear(request);
 
