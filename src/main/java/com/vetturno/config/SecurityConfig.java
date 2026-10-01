@@ -44,18 +44,30 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
+                        // Registro y login públicos
                         .requestMatchers("/api/auth/**")
                         .permitAll()
 
+                        // Swagger / OpenAPI públicos
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        )
+                        .permitAll()
+
+                        // Solo ADMIN puede registrar veterinarios
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/veterinarios"
                         )
                         .hasRole("ADMIN")
 
+                        // USER y ADMIN pueden usar el resto de la API
                         .requestMatchers("/api/**")
                         .hasAnyRole("USER", "ADMIN")
 
+                        // Cualquier otra ruta requiere autenticación
                         .anyRequest()
                         .authenticated()
                 )
